@@ -56,5 +56,11 @@ public class ActivityService {
                 .map(this::mapToResponse)
                 .collect(Collectors.toList());
     }
+
+    public @Nullable ActivityResponse getActivityById(String activityId) {
+        return activityRepository.findById(activityId)
+                .map(this::mapToResponse)
+                .orElseThrow(() -> new RuntimeException("Activity not fount for ID: " + activityId));
+    }
 }
 
