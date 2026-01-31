@@ -5,9 +5,7 @@ import com.fitness.activityservice.dto.ActivityResponse;
 import com.fitness.activityservice.model.Activity;
 import com.fitness.activityservice.repository.ActivityRepository;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import org.jspecify.annotations.Nullable;
-import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -18,8 +16,14 @@ import java.util.stream.Collectors;
 public class ActivityService {
 
     private final ActivityRepository activityRepository;
+    private final UserValidationService userValidationService;
 
     public ActivityResponse trackActivity(ActivityRequest request) {
+
+        boolean isValidUser = userValidationService.validateUser(request.getUserId());
+        if (!isValidUser) {
+            throw new RuntimeException("Invalid User: " + request.getUserId());
+        }
 
         Activity activity = Activity.builder()
                 .userId((request.getUserId()))
