@@ -12,13 +12,13 @@ import org.springframework.data.mongodb.repository.config.EnableMongoRepositorie
 
 @Configuration
 @EnableMongoAuditing
-@EnableMongoRepositories(basePackages = "com.fitness.activityservice.repository")
+@EnableMongoRepositories(basePackages = "com.fitness.aiservice.repository")
 public class MongoConfig extends AbstractMongoClientConfiguration {
 
-    @Value("${spring.data.mongodb.database:fitness_activity_db}")
+    @Value("${spring.data.mongodb.database:fitness_recommendations_db}")
     private String databaseName;
 
-    @Value("${spring.data.mongodb.uri:mongodb://localhost:27017/fitness_activity_db}")
+    @Value("${spring.data.mongodb.uri:mongodb://localhost:27017/fitness_recommendations_db}")
     private String mongoUri;
 
     @Override
