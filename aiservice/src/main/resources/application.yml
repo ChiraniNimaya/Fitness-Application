@@ -30,3 +30,9 @@ rabbitmq:
     name: activity.queue
   routing:
     key: activity.tracking
+
+gemini:
+  api:
+    base-url: https://generativelanguage.googleapis.com
+    model: gemini-2.0-flash
+    key: ${GEMINI_API_KEY}
